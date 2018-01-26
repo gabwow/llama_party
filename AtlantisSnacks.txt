@@ -1,0 +1,10 @@
+SmartPops:2
+Lucky Potato Chips:1
+Health Bars:4
+Corn-o's:1
+Pretzle Pops:2
+Freeze-dried Corn:2
+Captain Crunch Munchers:2
+Panda Mochi Cakes:3
+Beet Blast:2
+Crick-eats:1
