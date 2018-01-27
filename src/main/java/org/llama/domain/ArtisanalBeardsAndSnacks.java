@@ -15,7 +15,7 @@ public class ArtisanalBeardsAndSnacks implements SnackStore{
    public ArtisanalBeardsAndSnacks(){
        snackPrices = new HashMap<>();
        try{
-           Files.lines(Paths.get("ArtisanalSnacks.txt")).map(line -> line.split(":")).forEach(lineInfo -> snackPrices.put(lineInfo[0], Integer.parseInt(lineInfo[1])));   
+           Files.lines(Paths.get("ArtisanalSnacks.txt")).map(line -> line.split(":")).forEach(lineInfo -> snackPrices.put(lineInfo[SNACK_INDEX], Integer.parseInt(lineInfo[COST_INDEX])));   
        } catch(IOException ieo){}
 }
 

@@ -15,19 +15,12 @@ import java.util.Map;
 
 @Service
 public class SnackStoreService{
-   @Autowired
-   private Stores knownStores;
-   @Resource(name="atlantisSnackStore")
-   private SnackStore atlantisSnacks;
    @Resource(name="emptyStore")
    private SnackStore emptyStore;
-   @Resource(name="beardsAndSnacks")
-   private SnackStore beardsAndSnacks;
+   @Autowired
+   private Stores knownStores;
  
-
    public Map<String, Integer>  getSnackList(String storeName){
-      knownStores.put("Atlantis", atlantisSnacks);
-      knownStores.put("Artisanal Beards and Snacks", beardsAndSnacks);
 
       return knownStores.getOrDefault(storeName, emptyStore).getSnackPrices();
    }
