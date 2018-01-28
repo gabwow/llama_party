@@ -23,7 +23,7 @@ public class Stores extends HashMap<String, SnackStore>{
 
    
    @PostConstruct
-   public  void init(){
+   public  void init() throws IOException{
      atlantisSnacks.populateFromFile("AtlantisSnacks.txt");
      beardsAndSnacks.populateFromFile("ArtisanalSnacks.txt");
      this.put(LlamaStrings.ATLANTIS, atlantisSnacks);
