@@ -1,5 +1,6 @@
 package org.llama.domain;
 
+
 import java.util.Map;
 
 @FunctionalInterface

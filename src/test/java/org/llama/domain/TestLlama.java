@@ -22,13 +22,14 @@ public class TestLlama{
    @Autowired
    private Llama testLlama;
 
-   @Resource(name="atlantisSnackStore")
-   private SnackStore atlantisSnacks;
-   @Resource(name="beardsAndSnacks")
-   private SnackStore beardsAndSnacks; 
+   @Resource
+   private FileSnackStore atlantisSnacks;
+   @Resource
+   private FileSnackStore beardsAndSnacks; 
    
   @Test
    public void llama_properlyPopulated(){
+        
        Map<String, Integer> snackPrefs = testLlama.getSnackPreferences();
        Map<String, Integer> atlantisPrices = atlantisSnacks.getSnackPrices();
        Set<String> allKeys =  new HashSet<>();
