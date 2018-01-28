@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import javax.annotation.Resource;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,14 +17,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TestSnackStore{
-   @Autowired 
-   private AtlantisSnacks atlantis;
+   @Resource
+   private FileSnackStore atlantisSnacks;
 
    @Autowired
    private EmptyStore empty;
    @Test
    public void atlantisGetSnacks_properlyPopulated(){
-       Map<String, Integer> snackPrices = atlantis.getSnackPrices();
+       Map<String, Integer> snackPrices = atlantisSnacks.getSnackPrices();
        assertThat(snackPrices).isNotEmpty().hasSize(10);
        Map<String, Integer> expectedSnackPrices = new HashMap<>();
        expectedSnackPrices.put("SmartPops",2);
@@ -38,7 +39,6 @@ public class TestSnackStore{
        expectedSnackPrices.put("Crick-eats",1);
        assertThat(snackPrices).containsAllEntriesOf(expectedSnackPrices);
    }
-
    @Test
    public void emptyGetSnacks_isEmpty(){
        Map<String, Integer> snackPrices = empty.getSnackPrices();

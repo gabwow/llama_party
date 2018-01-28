@@ -1,10 +1,8 @@
 package org.llama.service;
 
-import org.llama.domain.ArtisanalBeardsAndSnacks;
 import org.llama.domain.EmptyStore;
 import org.llama.domain.SnackStore;
 import org.llama.domain.Stores;
-import org.llama.domain.AtlantisSnacks;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
