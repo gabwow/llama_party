@@ -2,7 +2,7 @@ package org.llama.domain;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import java.io.IOException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +12,16 @@ import javax.annotation.Resource;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
-
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TestSnackStore{
    @Resource
    private FileSnackStore atlantisSnacks;
+
+
 
    @Autowired
    private EmptyStore empty;
@@ -43,5 +46,11 @@ public class TestSnackStore{
    public void emptyGetSnacks_isEmpty(){
        Map<String, Integer> snackPrices = empty.getSnackPrices();
        assertThat(snackPrices).isEmpty();
+   }
+
+   @Test
+   public void fileStore_fastFailOnInitializationError(){
+      assertThatExceptionOfType(IOException.class).isThrownBy(() -> atlantisSnacks.populateFromFile("NoSuchFile.txt") );
+      assertThatCode(() -> {atlantisSnacks.populateFromFile("AtlantisSnacks.txt");}).doesNotThrowAnyException();
    }
 }
