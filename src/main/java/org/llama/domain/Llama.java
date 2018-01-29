@@ -19,7 +19,7 @@ public class Llama{
        } catch(IOException ioe){}
     }
 
-    public Map<String, Integer> getSnackPreferences(){
+    Map<String, Integer> getSnackPreferences(){
        return snackToPreference;
     }
 

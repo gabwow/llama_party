@@ -21,7 +21,7 @@ public class FileSnackStore implements SnackStore {
        snackPrices = new HashMap<>();
    }
 
-   public void populateFromFile(String filePath) throws IOException {
+   void populateFromFile(String filePath) throws IOException {
        try(Stream<String> items = Files.lines(Paths.get(filePath))) {
            items.map(line -> line.split(":")).forEach(lineInfo -> snackPrices.put(lineInfo[SNACK_INDEX], Integer.parseInt(lineInfo[COST_INDEX])));
        }
