@@ -6,17 +6,22 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Llama{
     Map<String, Integer> snackToPreference;
+    private final int snackIndex = 0;
+    private final int preferenceIndex = 1;
 
     public Llama(){
        snackToPreference = new HashMap<>();
-       try{
-          Files.lines(Paths.get("LlamaPreferences.txt")).map(line -> line.split(":")).forEach(lineInfo -> snackToPreference.put(lineInfo[0], Integer.parseInt(lineInfo[1])));
-       } catch(IOException ioe){}
+    }
+
+    @PostConstruct
+    public void populateFromFile() throws IOException{
+        Files.lines(Paths.get("LlamaPreferences.txt")).map(line -> line.split(":")).forEach(lineInfo -> snackToPreference.put(lineInfo[snackIndex], Integer.parseInt(lineInfo[preferenceIndex])));
     }
 
     Map<String, Integer> getSnackPreferences(){
