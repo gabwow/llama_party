@@ -25,7 +25,9 @@ jobs:
       - checkout
       - run:
           name: Update gradle 
-          command: 'sudo sdk install gradle 4.5'
+          command: 'sudo add-apt-repository ppa:cwchien/gradle'
+          command: 'sudo apt-get update'
+          command: 'sudo apt upgrade gradle'
       # Download and cache dependencies
       - restore_cache:
           keys:
