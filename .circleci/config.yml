@@ -24,8 +24,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Update gradle
-        command: 'sudo sdk install gradle 4.5'
+          name: Update gradle 
+          command: 'sudo sdk install gradle 4.5'
       # Download and cache dependencies
       - restore_cache:
           keys:
