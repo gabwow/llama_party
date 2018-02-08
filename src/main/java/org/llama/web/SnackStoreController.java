@@ -1,10 +1,10 @@
 package org.llama.web;
 
 import org.llama.service.SnackStoreService;
+import org.llama.domain.Snack;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +20,14 @@ public class SnackStoreController{
    @Autowired
    private SnackStoreService snackStoreService;
    @RequestMapping("/snackStore")
-   public Map<String, Integer> getSnackList(@RequestParam(value="name", defaultValue="Atlantis") String store ){
-      return snackStoreService.getSnackList(store);
+   public ResponseEntity<List<Snack>> getSnackList(@RequestParam(value="name", defaultValue="") String store ){
+      return ResponseEntity.ok(snackStoreService.getSnackList(store));
    }
 
    @RequestMapping("/stores")
-   public List<String> getAllStores(){
+   public ResponseEntity<List<String>> getAllStores(){
       String[] stores = {"Atlantis", "Artisanal Beards and Snacks"};
-      return Arrays.asList(stores);
+      return ResponseEntity.ok(Arrays.asList(stores));
    }
 
 }

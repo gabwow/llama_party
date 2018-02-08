@@ -2,8 +2,10 @@ package org.llama.domain;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.stream.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,18 +32,19 @@ public class TestLlama{
   @Test
    public void llama_properlyPopulated(){
         
-       Map<String, Integer> snackPrefs = testLlama.getSnackPreferences();
-       Map<String, Integer> atlantisPrices = atlantisSnacks.getSnackPrices();
-       Set<String> allKeys =  new HashSet<>();
-       allKeys.addAll(atlantisPrices.keySet());
-       allKeys.addAll(beardsAndSnacks.getSnackPrices().keySet());
-       assertThat(snackPrefs).isNotEmpty().hasSize(allKeys.size());
-       assertThat(allKeys).containsExactlyElementsOf(snackPrefs.keySet());
-   }
+       Map<String, Snack> snackPrefs = testLlama.getSnackPreferences();
+       List<Snack> atlantisPrices = atlantisSnacks.getSnackPrices();
+       Set<Snack> allKeys =  new HashSet<>();
+       allKeys.addAll(atlantisPrices);
+       allKeys.addAll(beardsAndSnacks.getSnackPrices());
+       Set<String> allNames = allKeys.stream().map(Snack::getName).collect(Collectors.toSet());
+       assertThat(snackPrefs).isNotEmpty().hasSize(allNames.size());
+       assertThat(allNames).containsOnlyElementsOf(snackPrefs.keySet());
+  }
 
    @Test
    public void llama_getUnknownSnack_noPref(){
-      assertThat(testLlama.getSnackPreference("Dog meat")).isZero();
+      assertThat(testLlama.getSnackPreference("Dog meat")).isEqualTo(new Snack());
    }
 
 }

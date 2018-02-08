@@ -1,7 +1,7 @@
 package org.llama.domain;
 
-import java.util.Map;
-import java.util.HashMap;
+import java.util.List;
+import java.util.LinkedList;
 import java.util.stream.Stream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,20 +14,23 @@ import javax.annotation.PostConstruct;
 
 @Component
 public class FileSnackStore implements SnackStore {
-   private final Map<String, Integer> snackPrices;
+   private final List<Snack> snackPrices;
    
    
    public FileSnackStore(){
-       snackPrices = new HashMap<>();
+       snackPrices = new LinkedList<>();
    }
 
    void populateFromFile(String filePath) throws IOException {
        try(Stream<String> items = Files.lines(Paths.get(filePath))) {
-           items.map(line -> line.split(":")).forEach(lineInfo -> snackPrices.put(lineInfo[SNACK_INDEX], Integer.parseInt(lineInfo[COST_INDEX])));
+           items.map(line -> line.split(":")).forEach(lineInfo -> snackPrices.add(
+                (new Snack()).name(lineInfo[SNACK_INDEX])
+                             .price(Integer.parseInt(lineInfo[COST_INDEX]))
+                 ));
        }
    }
 
-   public Map<String, Integer> getSnackPrices(){
+   public List<Snack> getSnackPrices(){
        return snackPrices;
    }
 
