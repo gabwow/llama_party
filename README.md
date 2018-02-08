@@ -14,7 +14,7 @@ example call: curl localhost:8080/stores
 url: /snackStore?store=\[controlled vocabulary as given by /stores\]  
 response structure:  list of objects with field name: alphanumeric price: positive integer  
 examples calls: curl localhost:8080/snackStore?name=Store1  
-\[{"name":"Snack1","price":2},{"name":"Snack2","price":1}\]
+\[{"name":"Snack1","price":2},{"name":"Snack2","price":1}\]  
 curl localhost:8080/snackStore?name=UNKNOWN_STORE  
 \[\] 
   
@@ -22,6 +22,6 @@ curl localhost:8080/snackStore?name=UNKNOWN_STORE
 url: /llama?snack=\[controlled vocabulary as given by /snackStore\]  
 response structure: object with field name: alphanumeric preferenceScore: positive integer  
 example calls: curl localhost:8080/llama?snack=Snack1  
-{"name":"Snack1","preferenceScore":1}
+{"name":"Snack1","preferenceScore":1}  
 curl localhost:8080/llama?snack=UNKNOWN_SNACK  
 {"name":""}
