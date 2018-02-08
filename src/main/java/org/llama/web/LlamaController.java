@@ -1,6 +1,7 @@
 package org.llama.web;
 
 import org.llama.service.LlamaService;
+import org.llama.domain.Snack;
 
 import java.util.Map;
 
@@ -18,7 +19,7 @@ public class LlamaController{
    private LlamaService llamaService;
   
    @RequestMapping("/llama")
-   public Integer getSnackPreference(@RequestParam(value="snack") String snack ){
-      return llamaService.getSnackPreference(snack);
+   public ResponseEntity<Snack> getSnackPreference(@RequestParam(value="snack") String snack ){
+      return ResponseEntity.ok(llamaService.getSnackPreference(snack));
    }
 }

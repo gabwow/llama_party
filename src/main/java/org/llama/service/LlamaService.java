@@ -1,6 +1,7 @@
 package org.llama.service;
 
 import org.llama.domain.Llama;
+import org.llama.domain.Snack;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class LlamaService{
    private Llama partyLlama; 
   
 
-   public Integer getSnackPreference(String snack){
+   public Snack getSnackPreference(String snack){
       return partyLlama.getSnackPreference(snack); 
    }
 }

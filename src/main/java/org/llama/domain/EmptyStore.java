@@ -1,18 +1,19 @@
 package org.llama.domain;
 
-import java.util.Map;
-import java.util.HashMap;
+
+import java.util.List;
+import java.util.LinkedList;
 import org.springframework.stereotype.Component;
 
 @Component(value="emptyStore")
 public class EmptyStore implements SnackStore{
-   private final Map<String, Integer> snackPrices;
+   private final List<Snack> snackPrices;
 
    public EmptyStore(){
-       snackPrices = new HashMap<>();
+       snackPrices = new LinkedList<>();
    }
 
-   public Map<String, Integer> getSnackPrices(){
+   public List<Snack> getSnackPrices(){
        return snackPrices;
    }
 
