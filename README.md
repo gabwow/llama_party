@@ -21,7 +21,7 @@ curl localhost:8080/snackStore?name=UNKNOWN_STORE
 notes: Returns a json response, not a response entity  
   
 ## Get the llama's preference score for a given snack  
-url: /llama  
+url: /llama?snack=\[controlled vocabulary as given by /snackStore\]  
 response structure: integer  
 example calls: curl localhost:8080/llama?snack=Snack1  
 1  
