@@ -9,21 +9,19 @@ This is the source for the llama party service. The services provided are:
 url: /stores  
 example call: curl localhost:8080/stores  
 \["Store1","Store2"\]  
-notes: Returns a json response, not a response entity  
   
 ## Get a map of all the items and costs for a provided store
 url: /snackStore?store=\[controlled vocabulary as given by /stores\]  
-response structure: key: alphanumeric value: integer  
+response structure:  list of objects with field name: alphanumeric price: positive integer  
 examples calls: curl localhost:8080/snackStore?name=Store1  
-{"Snack1":10,"Snack2":2}  
+\[{"name":"Snack1","price":2},{"name":"Snack2","price":1}\]
 curl localhost:8080/snackStore?name=UNKNOWN_STORE  
-{}  
-notes: Returns a json response, not a response entity  
+\[\] 
   
 ## Get the llama's preference score for a given snack  
 url: /llama?snack=\[controlled vocabulary as given by /snackStore\]  
-response structure: integer  
+response structure: object with field name: alphanumeric 
 example calls: curl localhost:8080/llama?snack=Snack1  
-1  
+{"name":"Snack1","preferenceScore":1}
 curl localhost:8080/llama?snack=UNKNOWN_SNACK  
-0
+{"name":""}
