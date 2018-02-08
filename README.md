@@ -20,7 +20,7 @@ curl localhost:8080/snackStore?name=UNKNOWN_STORE
   
 ## Get the llama's preference score for a given snack  
 url: /llama?snack=\[controlled vocabulary as given by /snackStore\]  
-response structure: object with field name: alphanumeric 
+response structure: object with field name: alphanumeric preferenceScore: positive integer  
 example calls: curl localhost:8080/llama?snack=Snack1  
 {"name":"Snack1","preferenceScore":1}
 curl localhost:8080/llama?snack=UNKNOWN_SNACK  
