@@ -11,7 +11,7 @@ example call: curl localhost:8080/stores
 \["Store1","Store2"\]  
   
 ## Get a map of all the items and costs for a provided store
-url: /snackStore?store=\[controlled vocabulary as given by /stores\]  
+url: /snackStore?name=\[controlled vocabulary as given by /stores\]  
 response structure:  list of objects with field name: alphanumeric price: positive integer  
 examples calls: curl localhost:8080/snackStore?name=Store1  
 \[{"name":"Snack1","price":2},{"name":"Snack2","price":1}\]  
